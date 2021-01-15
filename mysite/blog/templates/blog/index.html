@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+
+{% load static  %}
+
+{% block title %}My title{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <a class="section1" href='#'>
+            <img src="{% static 'images/back.webp' %}" alt="">
+        </a>
+    </div>
+    <div class="container">
+        <a class="section2" href='#'>
+            <img src="{% static 'images/back2.jpeg' %}" alt="">
+        </a>
+    </div>
+    <div class="container">
+        <a class="section3" href='#'>
+            <img src="{% static 'images/back3.jpeg' %}" alt="">
+        </a>
+    </div>
+    <div class="container">
+        <a class="section4" href='#'>
+            <img src="{% static 'images/back4.webp' %}" alt="">
+        </a>
+    </div>
+
+    <!-- <script src="./app.js"></script> -->
+{% endblock content %}
