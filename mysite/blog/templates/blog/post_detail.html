@@ -2,16 +2,13 @@
 
 {% load static  %}
 
-{% block title %}My title{% endblock %}
+{% block title %}{{ post.id }}{% endblock %}
 
 {% block content %}
-    {% for post in posts %}
         <div class="container">
-            <a class="section1" href="{{ post.get_absolute_url }}">
+            <h1 class="hola">{{ post.title }}</h1>
+            <a class="section1" href="{% url 'blog:home' %}">
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
             </a>
         </div>
-    {% endfor %} 
-
-    <!-- <script src="./app.js"></script> -->
 {% endblock content %}

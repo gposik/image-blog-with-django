@@ -15,7 +15,7 @@
   scrollbar-width: none;  /* Firefox */
 } 
 
-img {
+.img {
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
@@ -31,6 +31,10 @@ img {
     width: 100vw;
     height: 100vh;
     background-color: #fde332;
+}
+
+.hola {
+  color: red;
 }
 
 .container.active {
