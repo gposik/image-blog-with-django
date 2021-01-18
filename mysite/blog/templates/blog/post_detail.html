@@ -5,9 +5,9 @@
 {% block title %}{{ post.id }}{% endblock %}
 
 {% block content %}
-        <div class="container">
+        <div class="post-wrapper">
             <h1>{{ post.title }}</h1>
-            <a class="section1" href="{% url 'blog:home' %}">
+            <a href="{% url 'blog:home' %}">
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
             </a>
         </div>

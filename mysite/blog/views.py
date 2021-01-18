@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 
-def post_archives(request):
+def posts_archive(request):
 
     def group_by_date():
         index = 0
@@ -47,7 +47,7 @@ def post_archives(request):
 
     context = {'posts': group_by_date()}
 
-    return render(request, 'blog/archives.html', context)
+    return render(request, 'blog/archive.html', context)
 
 
 def post_detail(request, year, month, day, slug):
@@ -59,3 +59,6 @@ def post_detail(request, year, month, day, slug):
     context = {'post': post}
 
     return render(request, 'blog/post_detail.html', context)
+
+def menu(request):
+    return render(request, 'blog/menu.html')
