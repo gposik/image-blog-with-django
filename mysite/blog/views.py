@@ -1,52 +1,37 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import Post
+from datetime import date
 
 # Create your views here.
 
 def index(request):
     posts = Post.objects.all()
 
-    context = {'posts': posts}
+    enumerated_posts = enumerate(posts)
+
+    context = {'posts': enumerated_posts}
 
     return render(request, 'blog/index.html', context)
 
 
 def posts_archive(request):
 
-    def group_by_date():
-        index = 0
-        actual_post = Post.objects.all()[index]
+    months = Post.objects.dates('created', 'month', order='DESC')
+    posts = []
+    archive = {}
 
-        year = actual_post.created.year
-        month = actual_post.created.month
-
-        years = {}
-        months = {}
+    for m in months:
+        date = m.strftime("%B") + ' ' + str(m.year)
+        for p in Post.objects.all():
+            if p.created.date().month == m.month and p.created.date().year == m.year:
+                posts.append(p)
+        archive[date] = posts
         posts = []
-
-        print(year)
-        while (year == actual_post.created.year):
-            print(month)
-            while (year == actual_post.created.year and month == actual_post.created.month):
-                posts.append(actual_post)
-                print(actual_post.title)
-                index+= 1
-                if index < Post.objects.count():
-                    actual_post = Post.objects.all()[index]
-                else:
-                    months[month] = posts
-                    years[year] = months
-                    return years
-            months[month] = posts
-            month = actual_post.created.month
-        years[year] = months
-        year = actual_post.created.year
+    print(archive)  
         
-        return years
-
-    context = {'posts': group_by_date()}
-
+    context = {'archive': archive}
+    
     return render(request, 'blog/archive.html', context)
 
 
