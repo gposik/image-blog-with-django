@@ -33,7 +33,7 @@
                     <ul class="article-wrapper">
                         {% for post in posts  %}
                             <li class="article-item">
-                                <a href="{% url 'blog:home' %}">
+                                <a href="{% url 'blog:home' %}#{{post.id}}">
                                     {% if post.image %}
                                         <img class="article-view" src="{{ post.image.url }}" alt="{{ post.title }}">     
                                     {% else %}

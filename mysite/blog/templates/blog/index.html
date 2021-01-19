@@ -50,7 +50,7 @@
         </div>
 
         {% for post in posts %}
-            <div id="" class="post-wrapper" style='background-color:{{ post.background_color|cut:"''" }};'>
+            <div id="{{ post.id }}" class="post-wrapper" style='background-color:{{ post.background_color|cut:"''" }};'>
                 {% comment %} <a href="{{ post.get_absolute_url }}">
                 </a> {% endcomment %}
                 {% if post.image %}

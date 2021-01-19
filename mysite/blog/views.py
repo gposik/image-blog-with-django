@@ -42,7 +42,6 @@ def posts_archive(request):
                 posts.append(p)
         archive[date] = posts
         posts = []
-    print(archive)  
         
     context = {'archive': archive}
     
