@@ -8,7 +8,9 @@
         <div class="post-wrapper">
             <h1>{{ post.title }}</h1>
             <a href="{% url 'blog:home' %}">
-                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
             </a>
         </div>
 {% endblock content %}

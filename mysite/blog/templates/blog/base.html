@@ -52,14 +52,6 @@
         scrollbar-width: none; /* Firefox */
       }
 
-      /* post_detail */
-
-      .post-wrapper h1 {
-        position: fixed;
-        top: 30px;
-        left: 30px;
-        color: mistyrose;
-      }
 
       /* archives */
 
@@ -183,12 +175,13 @@
         align-items: flex-start;
         background-color: rgba(125,124,124,0);
         color: rgb(256,256,256, 0);
+        transition-duration: 250ms;
       }
 
       
       .article-filter div {
-                padding: 20px;
-                text-align: left;
+        padding: 20px;
+        text-align: left;
       }
 
       .article-filter p {
@@ -204,6 +197,7 @@
       .article-filter:hover {
         background-color: rgba(125,124,124,0.60);
         color: #ffffff;
+        transition-duration: 350ms;
       }
 
 
@@ -262,8 +256,27 @@
         align-items: center;
         {% comment %} overflow: scroll; {% endcomment %}
       }
+
+      .post-body {
+        color: #ffffff;
+        font-weight: 400;
+        font-size: 1.5em;
+        font-style: normal;
+      }
+
+      .post-body a {
+        font-style: italic;
+        text-decoration: underline;
+        color: #2B3C31;
+      }
+
+      .post-body h2 {
+        font-size: 1.2em;
+        margin-bottom: 1vw
+      }
+
       .post-title {
-        font-size: 2em;
+        font-size: 1em;
         margin-bottom: 38px;
       }
 
@@ -283,7 +296,10 @@
       /* menu */
 
       .menu-content {
-        display: flex;
+        display: none;
+        position: fixed;
+        top:0;
+        left: 0;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -291,6 +307,7 @@
         height: 100vh;
         background-color: #EDEAE2;
         color: #2B3C31;
+        z-index: 2;
       }
 
       .menu-wrapper {
@@ -328,5 +345,6 @@
 
   <body>
     <div id="content">{% block content %} {% endblock content %}</div>
+    <script src="{% static 'js/app.js' %}"></script>
   </body>
 </html>

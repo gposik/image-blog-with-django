@@ -7,10 +7,10 @@ app_name = 'blog'
 urlpatterns = [
     path('', views.index, name='home'),
     path('archive/', views.posts_archive, name='archive'),
-    path('menu/', views.menu, name='menu'),
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
          views.post_detail,
-         name='post_detail')
+         name='post_detail'),
+    path('about/', views.about, name='about'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

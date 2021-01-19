@@ -7,22 +7,36 @@ from datetime import date
 
 def index(request):
     posts = Post.objects.all()
-
-    enumerated_posts = enumerate(posts)
-
-    context = {'posts': enumerated_posts}
+    
+    context = {'posts': posts}
 
     return render(request, 'blog/index.html', context)
 
 
 def posts_archive(request):
 
+    meses = {
+            'January': 'Enero',
+            'February': 'Febrero',
+            'March': 'Marzo',
+            'April': 'Abril',
+            'May': 'Mayo',
+            'June': 'Junio',
+            'July': 'Julio',
+            'August': 'Agosto',
+            'September': 'Septiembre',
+            'October': 'Octubre',
+            'November': 'Noviembre',
+            'December': 'Diciembre'    
+            }
+
     months = Post.objects.dates('created', 'month', order='DESC')
     posts = []
     archive = {}
 
+
     for m in months:
-        date = m.strftime("%B") + ' ' + str(m.year)
+        date = meses[m.strftime("%B")] + ' ' + str(m.year)
         for p in Post.objects.all():
             if p.created.date().month == m.month and p.created.date().year == m.year:
                 posts.append(p)
@@ -45,5 +59,6 @@ def post_detail(request, year, month, day, slug):
 
     return render(request, 'blog/post_detail.html', context)
 
-def menu(request):
-    return render(request, 'blog/menu.html')
+
+def about(request):
+    pass
