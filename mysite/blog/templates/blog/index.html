@@ -7,46 +7,25 @@
 {% block content %}
     <div class="home-content">
 
-        <div id="menu-body-close" class="menu-content" style="display:none">
-            <div id="menu-icon-close" class="close">
-                <a href="#">
-                    <svg width="56" height="53" viewBox="0 0 56 53" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M56 5.33787L50.36 0L28 21.1621L5.64 0L0 5.33787L22.36 26.5L0 47.6621L5.64 53L28 31.8379L50.36 53L56 47.6621L33.64 26.5L56 5.33787Z" fill="#2B3C31"/>
-                    </svg>
-                </a>
-            </div>
-            <ul class="menu-wrapper">
-                <li class="menu-item">
-                    <a href="{% url 'blog:home' %}">HOME</a>
-                </li>
-                <li class="menu-item">
-                    <a href="{% url 'blog:archive' %}">ARCHIVE</a>
-                </li>
-                <li class="menu-item">
-                    <a href="{% url 'blog:about' %}">ABOUT</a>
-                </li>
-            </ul>
-        </div>
+        {% include "blog/menu.html" %}
 
-        <div class="hamburguer-menu">
-            <a id="menu-icon-open" href="#">
-                <svg width="87" height="67" viewBox="0 0 87 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g filter="url(#filter0_d)">
-                        <path d="M16 47H34.3333V41.1667H16V47ZM16 12V17.8333H71V12H16ZM16 32.4167H52.6667V26.5833H16V32.4167Z" fill="white"/>
-                    </g>
-                    <defs>
-                    <filter id="filter0_d" x="0" y="0" width="87" height="67" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-                    <feOffset dy="4"/>
-                    <feGaussianBlur stdDeviation="8"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.768627 0 0 0 0 0.768627 0 0 0 0 0.768627 0 0 0 1 0"/>
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-                    </filter>
-                    </defs>
-                </svg>
-            </a>
+        <div id="menu-icon-open" class="hamburguer-menu">
+            <svg width="87" height="67" viewBox="0 0 87 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d)">
+                    <path d="M16 47H34.3333V41.1667H16V47ZM16 12V17.8333H71V12H16ZM16 32.4167H52.6667V26.5833H16V32.4167Z" fill="white"/>
+                </g>
+                <defs>
+                <filter id="filter0_d" x="0" y="0" width="87" height="67" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+                <feOffset dy="4"/>
+                <feGaussianBlur stdDeviation="8"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.768627 0 0 0 0 0.768627 0 0 0 0 0.768627 0 0 0 1 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                </filter>
+                </defs>
+            </svg>
         </div>
 
         {% for post in posts %}
@@ -54,10 +33,15 @@
                 {% comment %} <a href="{{ post.get_absolute_url }}">
                 </a> {% endcomment %}
                 {% if post.image %}
+                    <div class="img" style="background-image: url('{{ post.image.url }}'); background-repeat: repeat-x; background-position: center; background-size: contain;">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="z-index: 1; display:none">
+                    </div>
+                    
                     {% comment %} MOBILE {% endcomment %}
                     {% comment %} <img src="{{ post.image.url }}" alt="{{ post.title }}" style="z-index: 1;"> {% endcomment %}
                     {% comment %} WIDTH-SCREEN {% endcomment %}
-                    <div class="img" style="background-image: url('{{ post.image.url }}'); background-repeat: repeat-x; background-position: center; background-size: contain;"></div>
+                    {% comment %} <div class="img" style="background-image: url('{{ post.image.url }}'); background-repeat: repeat-x; background-position: center; background-size: contain;"></div> {% endcomment %}
+                
                 {% elif post.body %}
                     <div class="content-wrapper">
                         <div class="post-title">
@@ -72,7 +56,7 @@
         {% endfor %} 
 
         <div class="next-post">
-            <a id="arrow" href="#">
+            <a id="arrow" href="#25">
                 <svg width="55" height="60" viewBox="0 0 55 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M31.8139 58.1564C31.8139 43.3918 54.762 40.9945 55 40.9678L54.2132 32.0997C49.0894 32.7007 44.078 34.0496 39.3443 36.0997C36.6534 37.275 34.1213 38.7908 31.8139 40.6139L31.8139 4.44692C31.8668 2.04291 29.976 0.0529283 27.5959 -0.000494131C25.2158 -0.0539166 23.2456 1.85593 23.1927 4.25994C23.1927 4.32004 23.1927 4.38682 23.1927 4.44692L23.1927 40.6139C20.8853 38.7908 18.3532 37.275 15.6623 36.0997C10.922 34.0429 5.91057 32.694 0.793368 32.0997L0.00661289 40.9678C0.238012 40.9878 23.1927 43.3918 23.1927 58.1564C23.1861 60.6139 31.8139 60.6139 31.8139 58.1564Z" fill="white"/>
                 </svg>

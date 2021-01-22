@@ -2,25 +2,42 @@ const toggleBtnOpen = document.querySelector('#menu-icon-open');
 
 const toggleBtnClose = document.querySelector('#menu-icon-close');
 
+// const toggleBodyClose = document.querySelector("#menu-body-close");
+
 const divList = document.querySelector('.menu-content');
 
 
-toggleBtnOpen.addEventListener('click', () => {
-	if(divList.style.display === 'none') {
-		divList.style.display = 'flex';
-	} else {
-		divList.style.display = 'none';
-	}
-});
-
-
-toggleBtnClose.addEventListener("click", () => {
-  if (divList.style.display === "none") {
-    divList.style.display = "flex";
+toggleBtnOpen.addEventListener("click", () => {
+  if (divList.style.opacity === '0') {
+    divList.style.opacity = '100%';
+    divList.style.left = '0';
   } else {
-    divList.style.display = "none";
+    divList.style.opacity = '0';
+    divList.style.left = '-100%';
   }
 });
+
+toggleBtnClose.addEventListener("click", () => {
+  if (divList.style.opacity === "0") {
+    divList.style.opacity = "100%";
+    divList.style.left = "0";
+  } else {
+    divList.style.opacity = "0";
+    divList.style.left = "-100%";
+  }
+});
+
+// toggleBodyClose.addEventListener("click", () => {
+//   if (divList.style.opacity === "0") {
+//     divList.style.opacity = "100%";
+//     divList.style.left = "0";
+//   } else {
+//     divList.style.opacity = "0";
+//     divList.style.left = "-100%";
+//   }
+// });
+
+
 
 
 // 

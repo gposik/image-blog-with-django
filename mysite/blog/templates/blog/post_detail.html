@@ -1,16 +1,22 @@
 {% extends "blog/base.html" %}
 
-{% load static  %}
-
-{% block title %}{{ post.id }}{% endblock %}
+{% block title %}{{ post.slug }}{% endblock %}
 
 {% block content %}
-        <div class="post-wrapper">
-            <h1>{{ post.title }}</h1>
-            <a href="{% url 'blog:home' %}">
+        <div style="display: flex; flex-direction:column; justify-content:center; align-items: left; margin: 5vw 20vw;">
+            <p>ID {{post.id}}</p>
+            <p>TITLE {{post.title}}</p>
+            <p>SLUG {{post.slug}}</p>
+            <p>IMG URL 
                 {% if post.image %}
-                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                    {{post.image}}
+                {% else %}
+                    none
                 {% endif %}
-            </a>
+            </p>
+            <p> BACKGROUND COLOR {{post.background_color}}</p>
+            <p>CREATED {{post.created}}</p>
+            <p>CONTENT</p>
+            <p>{{post.body|safe}}</p>
         </div>
 {% endblock content %}

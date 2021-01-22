@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import Post
 from datetime import date
+from django.http import Http404
 
 # Create your views here.
 
@@ -60,4 +61,8 @@ def post_detail(request, year, month, day, slug):
 
 
 def about(request):
-    pass
+    try:
+        p = Post.objects.get(pk=1000)
+    except Post.DoesNotExist:
+        raise Http404("Post does not exist")
+    return render(request, 'about.html', {'post': p})

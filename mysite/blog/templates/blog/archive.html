@@ -5,26 +5,11 @@
 {% block title %}Archivo{% endblock %}
 
 {% block content %}
+
     <div class="archive">
-        <nav class="archive-menu">
-            <ul>
-                <li class="menu-left-container">
-                    <a href="#">
-                        <svg width="16" height="25" viewBox="0 0 16 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 22.0625L6.11066 12.5L16 2.9375L12.9555 -9.79181e-08L1.16474e-06 12.5L12.9555 25L16 22.0625Z" fill="#7D7C7C"/>
-                        </svg>
-                    </a>
-                </li>
-                <li class="menu-middle-container"><h1>Archivo</h1></li>
-                <li class="menu-right-container">
-                    <a href="#">
-                        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.7356 18.2513H19.4272L18.9635 17.8042C22.839 13.2828 22.3256 6.47584 17.8042 2.60036C13.2828 -1.27512 6.47584 -0.761707 2.60036 3.75969C-1.27512 8.28108 -0.761707 15.088 3.75969 18.9635C7.80079 22.4249 13.7631 22.4249 17.8042 18.9635L18.2513 19.4272V20.7356L26.5323 29L29 26.5323L20.7356 18.2513ZM10.7985 18.2513C6.67458 18.2513 3.34564 14.9224 3.34564 10.7985C3.34564 6.67458 6.67458 3.34564 10.7985 3.34564C14.9224 3.34564 18.2513 6.67458 18.2513 10.7985C18.2513 14.9058 14.9224 18.2513 10.8151 18.2513H10.7985Z" fill="#2B3C31"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    
+        {% url 'blog:home' as my_url_context_var %}
+        {% include "blog/navbar.html" with back=my_url_context_var only %}
 
         <div class="archive-content"> 
             {% for date,posts in archive.items %}
@@ -52,5 +37,7 @@
                 </section>   
             {% endfor %}
         <div>
+
     </div>
+
 {% endblock content %}
