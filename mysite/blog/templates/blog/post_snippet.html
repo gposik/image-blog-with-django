@@ -1,0 +1,20 @@
+{% load static  %}
+{% load custom_tags %}
+
+<li class="article-item">
+    {% with post_id=post.id|stringformat:"i" %}  
+    <a href="{% anchor 'blog:home' post_id %}">
+        {% if post.image %}
+            <img class="article-view" src="{{ post.image.url }}" alt="{{ post.title }}">     
+        {% else %}
+            <div class="article-view" style='background-color:{{ post.background_color|cut:"''" }};'>
+        {% endif %}
+        <div class="article-view article-filter">
+            <div>
+                <p>{{ post.created|date:"l d " }}</p>
+                <p>{{ post.title }}</p>
+            </div>
+        </div>
+    </a>
+    {% endwith %}
+</li>        

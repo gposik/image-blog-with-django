@@ -1,20 +1,25 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.http import Http404
+from django.db.models import Q
 from .models import Post
 from datetime import date
-from django.http import Http404
+
 
 # Create your views here.
 
 def index(request):
-    posts = Post.objects.all()
     
-    context = {'posts': posts}
+    posts = Post.objects.all()
 
+    context = {'posts': posts}
+    
     return render(request, 'blog/index.html', context)
 
 
 def posts_archive(request):
+
+    ######################################
 
     meses = {
             'January': 'Enero',
@@ -31,20 +36,43 @@ def posts_archive(request):
             'December': 'Diciembre'    
             }
 
-    months = Post.objects.dates('created', 'month', order='DESC')
+    #######################################
+
+    context = {}
+
+    query = ""
+    if request.GET:
+        query = request.GET['q']
+        context['query'] = str(query)
+
+    def get_posts_by_content_queryset(query=None):
+        return Post.objects.filter(
+            Q(title__icontains=query) |
+            Q(body__icontains=query) |
+            Q(created__icontains=query)
+        ).distinct()
+
+
+    ####################################################
+
+
+    months = get_posts_by_content_queryset(query).dates('created', 'month', order='DESC')
+
+    # months = Post.objects.dates('created', 'month', order='DESC')
     posts = []
     archive = {}
 
 
     for m in months:
         date = meses[m.strftime("%B")] + ' ' + str(m.year)
-        for p in Post.objects.all():
+        # for p in Post.objects.all():
+        for p in get_posts_by_content_queryset(query):
             if p.created.date().month == m.month and p.created.date().year == m.year:
                 posts.append(p)
         archive[date] = posts
         posts = []
         
-    context = {'archive': archive}
+    context['archive'] = archive
     
     return render(request, 'blog/archive.html', context)
 
@@ -70,3 +98,4 @@ def about(request):
 
 def error_404_view(request, exception):
     return render(request, '404.html')
+

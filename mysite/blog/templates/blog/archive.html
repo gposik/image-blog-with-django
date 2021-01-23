@@ -18,8 +18,8 @@
                     <h2>{{ date }}</h2>
                     <ul class="article-wrapper">
                         {% for post in posts  %}
-                            <li class="article-item">
-                                {% comment %} <a href="{% url 'blog:home' %}#{{post.id}}"> {% endcomment %}
+                            {% comment %} <li class="article-item">
+                                <a href="{% url 'blog:home' %}#{{post.id}}">
                                 {% with post_id=post.id|stringformat:"i" %}  
                                 <a href="{% anchor 'blog:home' post_id %}">
                                     {% if post.image %}
@@ -35,7 +35,8 @@
                                     </div>
                                 </a>
                                 {% endwith %}
-                            </li>             
+                            </li> {% endcomment %}
+                            {% include 'blog/post_snippet.html' with post=post %}
                         {% endfor %}      
                     </ul>
                 </section>   
