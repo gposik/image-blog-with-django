@@ -14,3 +14,5 @@ urlpatterns = [
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+handler404 = 'blog.views.error_404_view'

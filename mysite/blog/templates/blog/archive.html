@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% load static  %}
+{% load custom_tags %}
 
 {% block title %}Archivo{% endblock %}
 
@@ -18,7 +19,9 @@
                     <ul class="article-wrapper">
                         {% for post in posts  %}
                             <li class="article-item">
-                                <a href="{% url 'blog:home' %}#{{post.id}}">
+                                {% comment %} <a href="{% url 'blog:home' %}#{{post.id}}"> {% endcomment %}
+                                {% with post_id=post.id|stringformat:"i" %}  
+                                <a href="{% anchor 'blog:home' post_id %}">
                                     {% if post.image %}
                                         <img class="article-view" src="{{ post.image.url }}" alt="{{ post.title }}">     
                                     {% else %}
@@ -31,6 +34,7 @@
                                         </div>
                                     </div>
                                 </a>
+                                {% endwith %}
                             </li>             
                         {% endfor %}      
                     </ul>

@@ -38,24 +38,64 @@ toggleBtnClose.addEventListener("click", () => {
 // });
 
 
+// --------------------- INDEX ARROW ---------------------- //
 
+$(function () {
 
-// 
+  console.log('ENTRE!!');
+  
+  var pagePositon = 0,
+    sectionsSeclector = "section",
+    $scrollItems = $(sectionsSeclector),
+    offsetTolorence = 30,
+    pageMaxPosition = $scrollItems.length - 1;
 
+  //Map the sections:
+  $scrollItems.each(function (index, ele) {
+    $(ele).attr("debog", index).data("pos", index);
+  });
 
+  // Bind to scroll
+  $(window).bind("scroll", upPos);
 
-// const post = document.querySelector('.post-wrapper');
+  //Move on click:
+  $("#arrow a").click(function (e) {
+    if ($(this).hasClass("next") && pagePositon + 1 <= pageMaxPosition) {
+      pagePositon++;
+      $("html, body")
+        .stop()
+        .animate(
+          {
+            scrollTop: $scrollItems.eq(pagePositon).offset().top,
+          },
+          300
+        );
+    }
+    if ($(this).hasClass("previous") && pagePositon - 1 >= 0) {
+      pagePositon--;
+      $("html, body")
+        .stop()
+        .animate(
+          {
+            scrollTop: $scrollItems.eq(pagePositon).offset().top,
+          },
+          300
+        );
+      return false;
+    }
+  });
 
-// const arrow = document.querySelector('#arrow');
+  //Update position func:
+  function upPos() {
+    var fromTop = $(this).scrollTop();
+    var $cur = null;
+    $scrollItems.each(function (index, ele) {
+      if ($(ele).offset().top < fromTop + offsetTolorence) $cur = $(ele);
+    });
+    if ($cur != null && pagePositon != $cur.data("pos")) {
+      pagePositon = $cur.data("pos");
+    }
+  }
+});
 
-// arrow.addEventListener('click', () => {
-	
-// 	let url = window.location.href;
-// 	let splitted_url = url.split('/');
-// 	console.log(splitted_url);
-// 	let post_id = splitted_url.slice(-1)[0];
-// 	console.log(post_id);
-// 	arrow.href = post_id;	
-// 	console.log(arrow.href);
-
-// })
+// ------------------------------------------------------------- //

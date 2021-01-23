@@ -253,7 +253,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        {% comment %} overflow: scroll; {% endcomment %}
       }
 
       .post-title {
@@ -281,6 +280,14 @@
         color: #2B3C31;
       }
 
+      .post-body + a {
+        font-style: italic;
+        color: #2B3C31;
+        padding: 20px 0;
+        text-align: right;
+        font-size: calc(12px + 0.4vw);
+      }
+
       .post-body h2 {
         font-size: 1.2em;
         margin-bottom: calc(4px + 1vw);
@@ -299,6 +306,17 @@
         z-index: 1;
       }
 
+    .post-wrapper .img img {
+          display: none;
+          z-index: 1;
+    }
+/*
+    @media screen and (max-width: 768px) {
+        .post-wrapper .img img {
+          display: flex;
+        }
+    }
+*/
       /* menu */
 
       .menu-content {
@@ -330,6 +348,7 @@
         padding: 8px;
       }
 
+/*
       .menu-item a {
         text-decoration: none;
       }
@@ -338,17 +357,42 @@
         text-decoration:line-through;
         color: #2B3C31;
       }
+*/
+      .strike-center {
+        position: relative;
+        white-space: nowrap; /* would center line-through in the middle of the wrapped lines */
+      }
+
+      .strike-center:after {
+          display: none;
+          border-top: 6px solid #2B3C31;
+          position: absolute;
+          content: "";
+          right: 0;
+          top:50%;
+          left: 0;
+      }
+
+      .strike-center:hover:after {
+        display: inline-block;
+      }
       
       .close svg {
         position: fixed;
-        top: 3.2vw;
-        right: 2.2vw;
+        top: calc(16px + 2vw);
+        right: calc(14px + 2vw);
         width: calc(16px + 3vw);
         height: calc(16px + 2vw);
         color: #2B3C31;
       }
 
       #menu-icon-open, #menu-icon-close {
+        cursor:pointer;
+      }
+
+      #arrow a {
+        display:inline-block;
+        padding:10px 20px;
         cursor:pointer;
       }
 

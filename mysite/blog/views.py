@@ -66,3 +66,7 @@ def about(request):
     except Post.DoesNotExist:
         raise Http404("Post does not exist")
     return render(request, 'about.html', {'post': p})
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html')
