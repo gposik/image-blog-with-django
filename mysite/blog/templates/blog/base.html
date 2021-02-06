@@ -69,10 +69,11 @@
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #FFFFFF;
         height: 79px;
+        height: calc(42px + 1.5vw);
         border-bottom: 1px solid #909090;
         font-size: 2.125em;
+        background-color: #FFFFFF;
         z-index:2;
       }
 
@@ -329,13 +330,13 @@
           display: none;
           z-index: 1;
     }
-/*
+
     @media screen and (max-width: 768px) {
         .post-wrapper .img img {
           display: flex;
         }
     }
-*/
+
       /* menu */
 
       .menu-content {
@@ -374,7 +375,7 @@
 
       .strike-center:after {
           display: none;
-          border-top: 6px solid #2B3C31;
+          border-top: calc(4px + 0.4vw) solid #2B3C31;
           position: absolute;
           content: "";
           right: 0;

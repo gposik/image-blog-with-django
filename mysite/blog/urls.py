@@ -11,6 +11,8 @@ urlpatterns = [
          views.post_detail,
          name='post_detail'),
     path('about/', views.about, name='about'),
+    path('post/add/', views.post_add, name='add'),
+    path('post/update/<int:id>/', views.post_update, name='update'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

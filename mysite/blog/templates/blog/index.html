@@ -35,8 +35,8 @@
                 {% if post.image %}
                     <div class="img" style="background-image: url('{{ post.image.url }}'); background-repeat: repeat-x; background-position: center; background-size: contain;">
                         <img src="{{ post.image.url }}" alt="{{ post.title }}" style="">
+                        <a href="{{ post.get_absolute_url }}">-></a>
                     </div>
-                    
                     {% comment %} MOBILE {% endcomment %}
                     {% comment %} <img src="{{ post.image.url }}" alt="{{ post.title }}" style="z-index: 1;"> {% endcomment %}
                     {% comment %} WIDTH-SCREEN {% endcomment %}

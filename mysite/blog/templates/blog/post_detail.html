@@ -3,20 +3,16 @@
 {% block title %}{{ post.slug }}{% endblock %}
 
 {% block content %}
-        <div style="display: flex; flex-direction:column; justify-content:center; align-items: left; margin: 5vw 20vw;">
+        <div style="display: flex; flex-direction:column; justify-content:center; align-items: left; margin: 5vw 14vw;">
             <p>ID {{post.id}}</p>
             <p>TITLE {{post.title}}</p>
             <p>SLUG {{post.slug}}</p>
-            <p>IMG URL 
-                {% if post.image %}
-                    {{post.image}}
-                {% else %}
-                    none
-                {% endif %}
-            </p>
-            <p> BACKGROUND COLOR {{post.background_color}}</p>
+            <p>BACKGROUND COLOR {{post.background_color}}</p>
             <p>CREATED {{post.created}}</p>
-            <p>CONTENT</p>
+            <p>CONTENT</p>   
+            {% if post.image %}
+                <img src="{{ post.image.url }}" style="width: 30%; height: 30%">
+            {% endif %}       
             <p>{{post.body|safe}}</p>
         </div>
 {% endblock content %}

@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
+from django.urls import reverse
 from django.db.models import Q
 from .models import Post
+from .forms import PostForm
 from datetime import date
 
 
@@ -94,6 +96,28 @@ def about(request):
     except Post.DoesNotExist:
         raise Http404("Post does not exist")
     return render(request, 'about.html', {'post': p})
+
+
+def post_add(request):
+    form = PostForm()
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('blog:home'))
+
+    context = {'form': form}
+    return render(request, 'blog/post_form.html', context)
+
+
+def post_update(request, id):
+    instance = get_object_or_404(Post, id=id)
+    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('blog:home'))
+    return render(request, 'blog/post_form.html', {'form': form}) 
 
 
 def error_404_view(request, exception):
