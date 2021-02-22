@@ -1,28 +1,21 @@
 {% comment %} <div id="menu-body-close" class="menu-content" style="display: none"> {% endcomment %}
-<div id="menu-body-close" class="menu-content" style="opacity: 0; left: -100%;">
-  <div id="menu-icon-close" class="close">
-    <svg
-      width="56"
-      height="53"
-      viewBox="0 0 56 53"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M56 5.33787L50.36 0L28 21.1621L5.64 0L0 5.33787L22.36 26.5L0 47.6621L5.64 53L28 31.8379L50.36 53L56 47.6621L33.64 26.5L56 5.33787Z"
-        fill="#2B3C31"
-      />
-    </svg>
+  <div id="menu-body" class="menu-content hidden">
+    <div id="menu-icon-close" class="close">
+      <svg width="56" height="53" viewBox="0 0 56 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M56 5.33787L50.36 0L28 21.1621L5.64 0L0 5.33787L22.36 26.5L0 47.6621L5.64 53L28 31.8379L50.36 53L56 47.6621L33.64 26.5L56 5.33787Z"
+          fill="#2B3C31" />
+      </svg>
+    </div>
+    <ul class="menu-wrapper">
+      <li class="menu-item">
+        <a class="strike-center" href="{% url 'blog:home' %}">HOME</a>
+      </li>
+      <li class="menu-item">
+        <a class="strike-center" href="{% url 'blog:archive' %}">ARCHIVE</a>
+      </li>
+      <li class="menu-item">
+        <a class="strike-center" href="{% url 'blog:about' %}">ABOUT</a>
+      </li>
+    </ul>
   </div>
-  <ul class="menu-wrapper">
-    <li class="menu-item">
-      <a class="strike-center" href="{% url 'blog:home' %}">HOME</a>
-    </li>
-    <li class="menu-item">
-      <a class="strike-center" href="{% url 'blog:archive' %}">ARCHIVE</a>
-    </li>
-    <li class="menu-item">
-      <a class="strike-center" href="{% url 'blog:about' %}">ABOUT</a>
-    </li>
-  </ul>
-</div>

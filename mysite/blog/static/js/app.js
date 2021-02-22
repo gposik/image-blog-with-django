@@ -1,49 +1,24 @@
-const toggleBtnOpen = document.querySelector('#menu-icon-open');
+const menuBtnOpen = document.querySelector("#menu-icon-open");
+const menuBtnClose = document.querySelector("#menu-icon-close");
+const menu = document.querySelector("#menu-body");
 
-const toggleBtnClose = document.querySelector('#menu-icon-close');
+const hideMenu = () => menu.classList.add("hidden");
+const showMenu = () => menu.classList.remove("hidden");
 
-// const toggleBodyClose = document.querySelector("#menu-body-close");
+menuBtnOpen.addEventListener("click", showMenu);
+menuBtnClose.addEventListener("click", hideMenu);
+menu.addEventListener("click", hideMenu);
 
-const divList = document.querySelector('.menu-content');
-
-
-toggleBtnOpen.addEventListener("click", () => {
-  if (divList.style.opacity === '0') {
-    divList.style.opacity = '100%';
-    divList.style.left = '0';
-  } else {
-    divList.style.opacity = '0';
-    divList.style.left = '-100%';
+document.addEventListener("keydown", (e) => {
+  console.log(e.key);
+  if (e.key === "Escape" && !menu.classList.contains("hidden")) {
+    hideMenu();
   }
 });
-
-toggleBtnClose.addEventListener("click", () => {
-  if (divList.style.opacity === "0") {
-    divList.style.opacity = "100%";
-    divList.style.left = "0";
-  } else {
-    divList.style.opacity = "0";
-    divList.style.left = "-100%";
-  }
-});
-
-// toggleBodyClose.addEventListener("click", () => {
-//   if (divList.style.opacity === "0") {
-//     divList.style.opacity = "100%";
-//     divList.style.left = "0";
-//   } else {
-//     divList.style.opacity = "0";
-//     divList.style.left = "-100%";
-//   }
-// });
-
 
 // --------------------- INDEX ARROW ---------------------- //
 
 $(function () {
-
-  console.log('ENTRE!!');
-  
   var pagePositon = 0,
     sectionsSeclector = "section",
     $scrollItems = $(sectionsSeclector),
